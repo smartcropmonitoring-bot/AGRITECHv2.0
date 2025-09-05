@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Farming - AGRITECH</title>
+  <link rel="stylesheet" href="Farming.css">
+</head>
+<body>
+  <h1>Farming Information</h1>
+  <form id="farmingForm">
+    <h2>1. Farm Land</h2>
+    <label>Total Land Area (hectares): <input type="number" name="totalLandArea"></label><br>
+
+    <label>Ownership Status:</label>
+    <select name="ownershipStatus">
+      <option>Owned</option>
+      <option>Rented</option>
+      <option>Shared</option>
+      <option>Government/Cooperative</option>
+    </select><br>
+
+    <label>Type of Land:</label><br>
+    <input type="checkbox" name="landType" value="Irrigated"> Irrigated
+    <input type="checkbox" name="landType" value="Rainfed"> Rainfed
+    <input type="checkbox" name="landType" value="Upland"> Upland
+    <input type="checkbox" name="landType" value="Lowland"> Lowland
+
+    <h2>2. Crops Grown</h2>
+    <label>Main Crop:</label>
+    <select name="mainCrop">
+      <option>Rice</option>
+      <option>Corn</option>
+      <option>Vegetables</option>
+      <option>Fruits</option>
+      <option>Root crops</option>
+      <option>Others</option>
+    </select><br>
+
+    <label>Secondary Crops: <input type="text" name="secondaryCrops"></label><br>
+
+    <label>Planting Season:</label><br>
+    <input type="checkbox" name="plantingSeason" value="Dry"> Dry Season
+    <input type="checkbox" name="plantingSeason" value="Wet"> Wet Season
+    <input type="checkbox" name="plantingSeason" value="Year-round"> Year-round
+
+    <h2>3. Production Details</h2>
+    <label>Average Yield (per hectare): <input type="number" name="averageYield"></label><br>
+    <label>Harvest Frequency:</label>
+    <select name="harvestFrequency">
+      <option>Once a year</option>
+      <option>Twice a year</option>
+      <option>Multiple harvests</option>
+    </select><br>
+
+    <label>Usage:</label>
+    <select name="usage">
+      <option>For Household</option>
+      <option>For Market</option>
+      <option>Both</option>
+    </select><br>
+
+    <h2>4. Farming Practices</h2>
+    <label>Method:</label>
+    <select name="method">
+      <option>Traditional</option>
+      <option>Organic</option>
+      <option>Hybrid/Modern</option>
+    </select><br>
+
+    <label>Irrigation Source:</label>
+    <select name="irrigationSource">
+      <option>Rainfed</option>
+      <option>Canal</option>
+      <option>Pump/Well</option>
+      <option>Others</option>
+    </select><br>
+
+    <label>Fertilizer Use:</label>
+    <select name="fertilizerUse">
+      <option>Organic</option>
+      <option>Inorganic</option>
+      <option>Both</option>
+    </select><br>
+
+    <label>Pesticide Use: 
+      <input type="radio" name="pesticideUse" value="true"> Yes
+      <input type="radio" name="pesticideUse" value="false"> No
+    </label><br>
+
+    <h2>5. Farm Equipment & Facilities</h2>
+    <label>Equipment Owned:</label><br>
+    <input type="checkbox" name="equipmentOwned" value="Tractor"> Tractor
+    <input type="checkbox" name="equipmentOwned" value="Hand Tractor"> Hand Tractor
+    <input type="checkbox" name="equipmentOwned" value="Thresher"> Thresher
+    <input type="checkbox" name="equipmentOwned" value="Sprayer"> Sprayer
+    <input type="checkbox" name="equipmentOwned" value="None"> None<br>
+
+    <label>Storage Facility:</label>
+    <select name="storageFacility">
+      <option>Warehouse</option>
+      <option>Silo</option>
+      <option>None</option>
+    </select><br>
+
+    <h2>6. Farming Expenses</h2>
+    <label>Seeds/Seedlings: ₱ <input type="number" name="expenses.seeds"></label><br>
+    <label>Fertilizers: ₱ <input type="number" name="expenses.fertilizers"></label><br>
+    <label>Pesticides/Herbicides: ₱ <input type="number" name="expenses.pesticides"></label><br>
+    <label>Labor: ₱ <input type="number" name="expenses.labor"></label><br>
+    <label>Water/Irrigation: ₱ <input type="number" name="expenses.water"></label><br>
+    <label>Fuel/Electricity: ₱ <input type="number" name="expenses.fuel"></label><br>
+    <label>Others: ₱ <input type="number" name="expenses.others"></label><br>
+
+    <h2>7. Challenges Faced</h2>
+    <input type="checkbox" name="challenges" value="Pests/Diseases"> Pests/Diseases
+    <input type="checkbox" name="challenges" value="Water Supply Issues"> Water Supply Issues
+    <input type="checkbox" name="challenges" value="High Production Costs"> High Production Costs
+    <input type="checkbox" name="challenges" value="Lack of Labor"> Lack of Labor
+    <input type="checkbox" name="challenges" value="Market Price Fluctuation"> Market Price Fluctuation
+    <input type="checkbox" name="challenges" value="Others"> Others
+
+    <br><br>
+    <button type="submit">Save Farming Info</button>
+  </form>
+
+  <script src="Farming.js"></script>
+</body>
+</html>

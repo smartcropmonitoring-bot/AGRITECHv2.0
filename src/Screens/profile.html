@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Farmer Profile</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Farmer Profile</h1>
+      <button onclick="window.location.href='Record.html'" class="back-btn">← Back to Records</button>
+    </header>
+
+    <!-- Profile content injected dynamically -->
+    <div id="profile-container" class="profile-container">
+      <p>Loading profile...</p>
+    </div>
+
+    <!-- Staff actions (view-only) -->
+    <div class="actions">
+      <button onclick="exportPDF()" class="btn pdf">📄 Export PDF</button>
+      <button onclick="exportExcel()" class="btn excel">📊 Export Excel</button>
+    </div>
+  </div>
+
+  <script src="profile.js"></script>
+</body>
+</html>

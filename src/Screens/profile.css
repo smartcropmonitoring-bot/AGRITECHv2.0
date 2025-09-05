@@ -1,0 +1,105 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+  color: #2c3e50;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.back-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.back-btn:hover {
+  background: #5a6268;
+}
+
+/* Profile container */
+.profile-container {
+  margin-top: 20px;
+}
+
+.section {
+  margin-bottom: 25px;
+  padding: 18px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.section h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #34495e;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 6px;
+}
+
+.animal {
+  padding: 10px 0;
+}
+.animal p {
+  margin: 4px 0;
+}
+
+/* Action buttons (staff: only PDF/Excel) */
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.actions .btn {
+  flex: 1;
+  min-width: 160px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  color: white;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.actions .btn:hover {
+  transform: scale(1.03);
+}
+
+.btn.pdf { background: #dc3545; }
+.btn.pdf:hover { background: #c82333; }
+
+.btn.excel { background: #17a2b8; }
+.btn.excel:hover { background: #138496; }

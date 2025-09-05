@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Farmer Records</title>
+  <link rel="stylesheet" href="Record.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h2>📋 Farmer Records</h2>
+      <button class="back-btn" onclick="window.location.href='Dashboard.html'">← Back to Dashboard</button>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by name, ID, crop, or animal">
+      <button onclick="searchRecords()">Search</button>
+    </div>
+
+    <!-- Results Table -->
+    <div id="results" class="results">
+      <!-- Records will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script src="Record.js"></script>
+</body>
+</html>
