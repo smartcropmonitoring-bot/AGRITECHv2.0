@@ -6,15 +6,15 @@ const menu = document.getElementById("menu");
 // Define role-based menu items
 const menuItems = {
   user: [
-    { name: "Information", link: "information.html" },
-    { name: "Farming", link: "farming.html" },
-    { name: "Animal Husbandry", link: "animal.html" }
+    { name: "Information", link: "Information.html" },
+    { name: "Farming", link: "Farming.html" },
+    { name: "Animal Husbandry", link: "Animal.html" }
   ],
   admin: [
-    { name: "Information", link: "information.html" },
-    { name: "Farming", link: "farming.html" },
-    { name: "Animal Husbandry", link: "animal.html" },
-    { name: "Records", link: "records.html" }
+    { name: "Information", link: "Information.html" },
+    { name: "Farming", link: "Farming.html" },
+    { name: "Animal Husbandry", link: "AnimalHusbandry.html" },
+    { name: "Records", link: "Record.html" }
   ]
 };
 
@@ -34,5 +34,5 @@ function toggleSidebar() {
 // Logout button
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("role");
-  window.location.href = "loginPage.html";
+  window.location.href = "LoginPage.html";
 });
