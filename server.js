@@ -8,23 +8,22 @@ import Farmer from "./src/models/Farmer.js"; // Make sure this path is correct
 
 // 🔹 Load .env explicitly
 dotenv.config(); // loads .env
-console.log("Mongo URI:", process.env.MONGO_URI);
-
+console.log("Mongo URI:", process.env.MONGODB_URI);
 
 // Debug: confirm Mongo URI is loaded
-console.log("Mongo URI:", process.env.MONGO_URI);
+console.log("Mongo URI:", process.env.MONGODB_URI);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // 🔹 Connect to MongoDB
-if (!process.env.MONGO_URI) {
-  console.error("❌ MONGO_URI is undefined. Check your .env file!");
+if (!process.env.MONGODB_URI) {
+  console.error("❌ MONGODB_URI is undefined. Check your .env file!");
   process.exit(1);
 }
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
