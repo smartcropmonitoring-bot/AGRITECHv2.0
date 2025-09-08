@@ -23,7 +23,7 @@ document.getElementById("loginBtn").addEventListener("click", async function () 
 
     const data = await res.json();
     if (data.success) {
-      window.location.href = "dashboard.html";
+      window.location.href = "Dashboard.html";
     } else {
       error.textContent = data.message;
     }
@@ -34,5 +34,5 @@ document.getElementById("loginBtn").addEventListener("click", async function () 
 
 // Register button → go to register page
 document.getElementById("registerBtn").addEventListener("click", function () {
-  window.location.href = "register.html";
+  window.location.href = "Register.html";
 });
