@@ -177,6 +177,34 @@ app.get("/api/farmers/search", async (req, res) => {
   }
 });
 
+// 🔹 Seed default admin if not exists
+async function seedAdmin() {
+  try {
+    const exists = await User.findOne({ username: "admin" });
+    if (exists) {
+      console.log("⚠️ Admin already exists, skipping seed.");
+      return;
+    }
+    const hashedPassword = await bcrypt.hash("admin123", 10);
+    const admin = new User({
+      username: "admin",
+      password: hashedPassword,
+      role: "admin"
+    });
+    await admin.save();
+    console.log("✅ Default admin user created: admin / admin123");
+  } catch (err) {
+    console.error("❌ Error seeding admin:", err.message);
+  }
+}
+
+// Call after DB connect
+mongoose.connection.once("open", () => {
+  console.log("📦 MongoDB ready");
+  seedAdmin();
+});
+
+
 // Get single farmer
 app.get("/api/farmers/:id", async (req, res) => {
   try {
