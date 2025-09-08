@@ -29,7 +29,7 @@ document.getElementById("animalForm").addEventListener("submit", async (e) => {
     }
   });
 
-  const res = await fetch("http://localhost:3000/api/animal", {
+  const res = await fetch("https://agritechv2-0.onrender.com", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
