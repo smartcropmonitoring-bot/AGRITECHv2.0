@@ -93,7 +93,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Login
+// Login (✅ fixed to return user object)
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -114,7 +114,15 @@ app.post("/login", async (req, res) => {
         .status(401)
         .json({ success: false, message: "Invalid password" });
 
-    res.json({ success: true, message: "Login successful", role: user.role });
+    // ✅ Return role + username for frontend
+    res.json({
+      success: true,
+      message: "Login successful",
+      user: {
+        username: user.username,
+        role: user.role,
+      },
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server error" });
   }
@@ -203,7 +211,6 @@ mongoose.connection.once("open", () => {
   console.log("📦 MongoDB ready");
   seedAdmin();
 });
-
 
 // Get single farmer
 app.get("/api/farmers/:id", async (req, res) => {
