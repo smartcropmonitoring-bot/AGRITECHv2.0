@@ -1,3 +1,9 @@
+// Auto-detect backend URL (localhost for dev, your server URL for production)
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000"
+    : "https://agritechv2-0.onrender.com"; // <-- replace with your deployed Render/Heroku/whatever URL
+
 document.getElementById("showPassword").addEventListener("change", function () {
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirmPassword");
@@ -28,7 +34,7 @@ document.getElementById("registerBtn").addEventListener("click", async function 
   }
 
   try {
-    const res = await fetch("http://localhost:3000/register", {
+    const res = await fetch(`${API_BASE_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
