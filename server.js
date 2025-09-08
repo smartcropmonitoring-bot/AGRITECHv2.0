@@ -1,63 +1,65 @@
-// server.js
 import express from "express";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import cors from "cors";
-import Farmer from "./src/models/Farmer.js"; // Make sure this path is correct
+import Farmer from "./src/models/Farmer.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 🔹 Load .env explicitly
-dotenv.config(); // loads .env
+// 🔹 Load .env
+dotenv.config();
 console.log("Mongo URI:", process.env.MONGODB_URI);
 
 const app = express();
-app.use(express.json()); // ✅ only JSON parser (no duplicate cors)
+app.use(express.json());
 
-// ✅ CORS setup (allow only frontend + local dev)
+// ✅ CORS setup
 const allowedOrigins = [
-  "https://agritechv2-0.onrender.com", // your frontend
-  "http://localhost:3000"              // for local testing
+  "https://agritechv2-0.onrender.com",
+  "http://localhost:3000"
 ];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      console.log("🔎 CORS request from:", origin);
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
-app.use(cors({
-  origin: function (origin, callback) {
-    console.log("🔎 CORS request from:", origin); // debug log
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
-
-// 🔹 Connect to MongoDB
+// 🔹 MongoDB
 if (!process.env.MONGODB_URI) {
   console.error("❌ MONGODB_URI is undefined. Check your .env file!");
   process.exit(1);
 }
-
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ MongoDB connected"))
-.catch(err => console.error("❌ MongoDB error:", err));
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB error:", err));
 
 /* ------------------ USER SCHEMA ------------------ */
-const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true },
-  password: String,
-  role: { type: String, enum: ["user", "admin"], default: "user" }
-}, { timestamps: true });
-
+const userSchema = new mongoose.Schema(
+  {
+    username: { type: String, unique: true },
+    password: String,
+    role: { type: String, enum: ["user", "admin"], default: "user" },
+  },
+  { timestamps: true }
+);
 const User = mongoose.model("User", userSchema);
 
 /* ------------------ USER APIs ------------------ */
@@ -65,15 +67,27 @@ const User = mongoose.model("User", userSchema);
 app.post("/register", async (req, res) => {
   try {
     const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ success: false, message: "Username & password required" });
+    if (!username || !password)
+      return res
+        .status(400)
+        .json({ success: false, message: "Username & password required" });
 
     const exists = await User.findOne({ username });
-    if (exists) return res.status(409).json({ success: false, message: "User already exists" });
+    if (exists)
+      return res
+        .status(409)
+        .json({ success: false, message: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword, role: "user" });
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+      role: "user",
+    });
     await newUser.save();
-    res.status(201).json({ success: true, message: "Account created successfully" });
+    res
+      .status(201)
+      .json({ success: true, message: "Account created successfully" });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server error" });
   }
@@ -83,13 +97,22 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ success: false, message: "Username & password required" });
+    if (!username || !password)
+      return res
+        .status(400)
+        .json({ success: false, message: "Username & password required" });
 
     const user = await User.findOne({ username });
-    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+    if (!user)
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).json({ success: false, message: "Invalid password" });
+    if (!isMatch)
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid password" });
 
     res.json({ success: true, message: "Login successful", role: user.role });
   } catch (err) {
@@ -98,7 +121,6 @@ app.post("/login", async (req, res) => {
 });
 
 /* ------------------ FARMER APIs ------------------ */
-// Helper: generate Farmer ID like F001
 async function generateFarmerId() {
   const count = await Farmer.countDocuments();
   return "F" + String(count + 1).padStart(3, "0");
@@ -112,7 +134,9 @@ app.post("/api/farmers", async (req, res) => {
 
     const farmer = new Farmer(payload);
     await farmer.save();
-    res.status(201).json({ success: true, message: "Farmer record saved!", farmer });
+    res
+      .status(201)
+      .json({ success: true, message: "Farmer record saved!", farmer });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -121,13 +145,23 @@ app.post("/api/farmers", async (req, res) => {
 // Search farmers
 app.get("/api/farmers/search", async (req, res) => {
   try {
-    const { query, name, farmerId, province, municipality, barangay, crop, animal } = req.query;
+    const {
+      query,
+      name,
+      farmerId,
+      province,
+      municipality,
+      barangay,
+      crop,
+      animal,
+    } = req.query;
     const q = {};
 
-    if (query) q.$or = [
-      { fullName: new RegExp(query, "i") },
-      { farmerId: new RegExp(query, "i") }
-    ];
+    if (query)
+      q.$or = [
+        { fullName: new RegExp(query, "i") },
+        { farmerId: new RegExp(query, "i") },
+      ];
     if (name) q.fullName = new RegExp(name, "i");
     if (farmerId) q.farmerId = new RegExp(farmerId, "i");
     if (province) q["location.province"] = province;
@@ -143,22 +177,28 @@ app.get("/api/farmers/search", async (req, res) => {
   }
 });
 
-// Get single farmer by Mongo _id
+// Get single farmer
 app.get("/api/farmers/:id", async (req, res) => {
   try {
     const farmer = await Farmer.findById(req.params.id);
-    if (!farmer) return res.status(404).json({ success: false, message: "Farmer not found" });
+    if (!farmer)
+      return res
+        .status(404)
+        .json({ success: false, message: "Farmer not found" });
     res.json(farmer);
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 });
 
-// Get single farmer by human-friendly farmerId (F001)
+// Get by farmerId
 app.get("/api/farmers/by-farmerId/:farmerId", async (req, res) => {
   try {
     const farmer = await Farmer.findOne({ farmerId: req.params.farmerId });
-    if (!farmer) return res.status(404).json({ success: false, message: "Farmer not found" });
+    if (!farmer)
+      return res
+        .status(404)
+        .json({ success: false, message: "Farmer not found" });
     res.json(farmer);
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
@@ -173,18 +213,31 @@ app.put("/api/farmers/:id", async (req, res) => {
       { ...req.body, updatedAt: new Date() },
       { new: true }
     );
-    if (!farmer) return res.status(404).json({ success: false, message: "Farmer not found" });
+    if (!farmer)
+      return res
+        .status(404)
+        .json({ success: false, message: "Farmer not found" });
     res.json({ success: true, farmer });
   } catch (err) {
     res.status(500).json({ success: false, message: "Update failed" });
   }
 });
 
-/* ------------------ DEFAULT ROUTE ------------------ */
-app.use(express.static(path.join(__dirname, "src/Screens")));
+/* ------------------ STATIC FILES ------------------ */
+// Serve all HTML/CSS/JS inside src/Screens
+app.use(express.static(path.join(__dirname, "src", "Screens")));
 
+// Default → LoginPage.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "src/Screens", "LoginPage.html"));
+  res.sendFile(path.join(__dirname, "src", "Screens", "LoginPage.html"));
+});
+
+// ✅ Catch-all to serve static HTML (e.g., /forms/cattle.html)
+app.get("*", (req, res) => {
+  const filePath = path.join(__dirname, "src", "Screens", req.path);
+  res.sendFile(filePath, (err) => {
+    if (err) res.status(404).send("Page not found");
+  });
 });
 
 /* ------------------ START SERVER ------------------ */
