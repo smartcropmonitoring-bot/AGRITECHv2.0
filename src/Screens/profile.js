@@ -9,7 +9,7 @@ async function loadProfile() {
   }
 
   try {
-    const res = await fetch(`http://localhost:3000/api/farmers/${farmerId}`);
+    const res = await fetch(`/api/farmers/${farmerId}`);
     const farmer = await res.json();
 
     if (!farmer._id) {
