@@ -1,3 +1,9 @@
+// Auto-detect backend URL
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000"
+    : "https://your-app.onrender.com"; // <-- replace with your deployed backend URL
+
 // Toggle show/hide password
 document.getElementById("showPassword").addEventListener("change", function () {
   const password = document.getElementById("password");
@@ -15,7 +21,7 @@ document.getElementById("loginBtn").addEventListener("click", async function () 
   const error = document.getElementById("error");
 
   try {
-    const res = await fetch("http://localhost:3000/login", {
+    const res = await fetch(`${API_BASE_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
