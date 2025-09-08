@@ -8,7 +8,7 @@ const menuItems = {
   user: [
     { name: "Information", link: "Information.html" },
     { name: "Farming", link: "Farming.html" },
-    { name: "Animal Husbandry", link: "Animal.html" }
+    { name: "Animal Husbandry", link: "AnimalHusbandry.html" }
   ],
   admin: [
     { name: "Information", link: "Information.html" },
