@@ -7,8 +7,8 @@ async function searchRecords() {
   }
 
   try {
-    // Use multiple filters: name, farmerId, crop, or animal
-    const res = await fetch(`http://localhost:3000/api/farmers/search?name=${query}&farmerId=${query}&crop=${query}&animal=${query}`);
+    // ✅ Use relative path instead of hardcoded localhost
+    const res = await fetch(`/api/farmers/search?name=${query}&farmerId=${query}&crop=${query}&animal=${query}`);
     const data = await res.json();
 
     const resultsDiv = document.getElementById("results");
@@ -39,5 +39,5 @@ async function searchRecords() {
 
 // Redirect to read-only profile page
 function viewProfile(id) {
-  window.location.href = `Profile.html?id=${id}`;
+  window.location.href = `profile.html?id=${id}`;
 }
