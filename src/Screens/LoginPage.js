@@ -31,12 +31,25 @@ document.getElementById("loginBtn").addEventListener("click", async function () 
     }
 
     const data = await res.json();
-    if (data.success) {
-      // Save token/session if backend provides it
-      if (data.token) {
-        localStorage.setItem("authToken", data.token);
-      }
-      window.location.href = "Dashboard.html";
+if (data.success) {
+  // Save token if backend provides it
+  if (data.token) {
+    localStorage.setItem("authToken", data.token);
+  }
+
+  // ✅ Save role
+  if (data.user && data.user.role) {
+    localStorage.setItem("role", data.user.role);
+  }
+
+  // (optional) Save username too
+  if (data.user && data.user.username) {
+    localStorage.setItem("username", data.user.username);
+  }
+
+  window.location.href = "Dashboard.html";
+}
+
     } else {
       error.textContent = data.message || "Invalid username or password.";
     }
