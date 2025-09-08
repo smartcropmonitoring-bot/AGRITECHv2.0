@@ -1,5 +1,3 @@
-// login.js
-
 const API_BASE_URL = "https://agritechv2-0.onrender.com"; 
 
 // Toggle show/hide password
@@ -31,25 +29,24 @@ document.getElementById("loginBtn").addEventListener("click", async function () 
     }
 
     const data = await res.json();
-if (data.success) {
-  // Save token if backend provides it
-  if (data.token) {
-    localStorage.setItem("authToken", data.token);
-  }
 
-  // ✅ Save role
-  if (data.user && data.user.role) {
-    localStorage.setItem("role", data.user.role);
-  }
+    if (data.success) {
+      // Save token if backend provides it
+      if (data.token) {
+        localStorage.setItem("authToken", data.token);
+      }
 
-  // (optional) Save username too
-  if (data.user && data.user.username) {
-    localStorage.setItem("username", data.user.username);
-  }
+      // ✅ Save role
+      if (data.user && data.user.role) {
+        localStorage.setItem("role", data.user.role);
+      }
 
-  window.location.href = "Dashboard.html";
-}
+      // (optional) Save username too
+      if (data.user && data.user.username) {
+        localStorage.setItem("username", data.user.username);
+      }
 
+      window.location.href = "Dashboard.html";
     } else {
       error.textContent = data.message || "Invalid username or password.";
     }
