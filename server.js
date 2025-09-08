@@ -165,8 +165,10 @@ app.put("/api/farmers/:id", async (req, res) => {
 });
 
 /* ------------------ DEFAULT ROUTE ------------------ */
+app.use(express.static(path.join(__dirname, "src/Screens")));
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "AGRITECHv2.0/src/screens/LoginPage.html"));
+  res.sendFile(path.join(__dirname, "src/Screens", "LoginPage.html"));
 });
 
 /* ------------------ START SERVER ------------------ */
