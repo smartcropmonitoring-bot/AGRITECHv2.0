@@ -2,39 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Farmer Census Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Information - AGRITECH</title>
+  <link rel="stylesheet" href="Information.css">
 </head>
 <body>
-  <h2>Farmer Census</h2>
+  <header class="topbar">
+    <h1>AGRITECH - Information</h1>
+    <button onclick="window.location.href='Dashboard.html'" class="backBtn">⬅ Back to Dashboard</button>
+  </header>
 
-  <form id="farmerForm">
-    <!-- 👤 Farmer Details -->
-    <label>Full Name: <input type="text" name="fullName" required></label><br>
-    <label>Contact: <input type="text" name="contact"></label><br>
+  <main class="container">
+    <form id="infoForm">
+      <h2>Personal Information</h2>
+      <label>Name:</label>
+      <input type="text" name="name" required>
 
-    <!-- 📍 Location -->
-    <h3>📍 Location</h3>
-    <label>Province: <input type="text" name="province"></label><br>
-    <label>Municipality: <input type="text" name="municipality"></label><br>
-    <label>Barangay: <input type="text" name="barangay"></label><br>
+      <label>Age:</label>
+      <input type="number" name="age" min="1" required>
 
-    <!-- 🌾 Farming Basics -->
-    <h3>🌱 Farming</h3>
-    <label>Total Land Area (ha): <input type="number" name="totalLandArea"></label><br>
-    <label>Ownership Status:
-      <select name="ownershipStatus">
-        <option value="">--Select--</option>
-        <option>Owned</option>
-        <option>Rented</option>
-        <option>Shared</option>
-        <option>Government/Coop</option>
-      </select>
-    </label><br>
-    <label>Main Crop: <input type="text" name="mainCrop"></label><br>
+      <label>Gender:</label>
+      <div class="checkbox-group">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female" required> Female</label>
+      </div>
 
-    <button type="submit">💾 Save Farmer</button>
-  </form>
+      <label>Contact No.:</label>
+      <input type="text" name="contact">
 
-  <script src="farmerForm.js"></script>
+      <label>Address:</label>
+      <input type="text" name="address">
+
+      <h2>Farm Information</h2>
+      <label>Land Size (hectares):</label>
+      <input type="number" name="landSize" step="0.1">
+
+      <label>Land Ownership:</label>
+      <div class="checkbox-group">
+        <label><input type="radio" name="ownership" value="Owned"> Owned</label>
+        <label><input type="radio" name="ownership" value="Rented"> Rented</label>
+        <label><input type="radio" name="ownership" value="Shared"> Shared</label>
+      </div>
+
+      <label>Main Crops:</label>
+      <input type="text" name="crops">
+
+      <h2>Animals Raised</h2>
+      <label>Cattle:</label>
+      <input type="number" name="cattle" min="0">
+
+      <label>Carabao:</label>
+      <input type="number" name="carabao" min="0">
+
+      <label>Goats:</label>
+      <input type="number" name="goats" min="0">
+
+      <label>Pigs:</label>
+      <input type="number" name="pigs" min="0">
+
+      <label>Chickens:</label>
+      <input type="number" name="chickens" min="0">
+
+      <label>Ducks:</label>
+      <input type="number" name="ducks" min="0">
+
+      <label>Others:</label>
+      <input type="text" name="others">
+
+      <button type="submit" class="submitBtn">Save Information</button>
+    </form>
+  </main>
+
+  <script src="Information.js"></script>
 </body>
 </html>
