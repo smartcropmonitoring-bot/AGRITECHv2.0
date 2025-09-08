@@ -7,22 +7,22 @@
 </head>
 <body>
   <h1>🐮 Animal Husbandry Census Form</h1>
+  
   <header class="topbar">
     <h1>AGRITECH - Information</h1>
-    <button onclick="window.location.href='Dashboard.html'" class="backBtn">⬅ Back to Dashboard</button>
+    <!-- ✅ Back button -->
+    <button onclick="goBackToDashboard()" class="backBtn">⬅ Back to Dashboard</button>
   </header>
 
   <form id="animalForm">
     <h2>1. Select Animal Type</h2>
-    <select id="animalType" name="animalType">
+    <select id="animalType" name="animalType" onchange="goToAnimalForm(this.value)">
       <option value="">-- Select --</option>
       <option value="Cattle">Cattle</option>
-      <option value="Carabao">Carabao</option>
-      <option value="Goat">Goat</option>
-      <option value="Pig">Pig</option>
       <option value="Chicken">Chicken</option>
       <option value="Duck">Duck</option>
-      <option value="Others">Others</option>
+      <option value="Goat">Goat</option>
+      <option value="Pig">Pig</option>
     </select>
 
     <div id="animalFields"></div>
@@ -30,6 +30,22 @@
     <br>
     <button type="submit">Save</button>
   </form>
+
+  <script>
+    // ✅ Redirect based on selected animal
+    function goToAnimalForm(animal) {
+      if (!animal) return;
+      const fileName = animal + ".html"; // e.g. Chicken.html
+      // Forms are inside src/screens/forms/
+      window.location.href = "src/screens/forms/" + fileName;
+    }
+
+    // ✅ Back button works from forms folder
+    function goBackToDashboard() {
+      // Always redirect to Dashboard.html at root of screens
+      window.location.href = "../Dashboard.html";
+    }
+  </script>
 
   <script src="AnimalHusbandry.js"></script>
 </body>
