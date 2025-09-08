@@ -5,6 +5,11 @@ import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import cors from "cors";
 import Farmer from "./src/models/Farmer.js"; // Make sure this path is correct
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
 
 // 🔹 Load .env explicitly
 dotenv.config(); // loads .env
@@ -161,7 +166,7 @@ app.put("/api/farmers/:id", async (req, res) => {
 
 /* ------------------ DEFAULT ROUTE ------------------ */
 app.get("/", (req, res) => {
-  res.send("🌱 SmartCrop API Running...");
+  res.sendFile(path.join(__dirname, "main/src/screens/LoginPage.html"));
 });
 
 /* ------------------ START SERVER ------------------ */
