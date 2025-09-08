@@ -5,7 +5,7 @@ document.getElementById("infoForm").addEventListener("submit", async function(e)
   const data = Object.fromEntries(formData.entries());
 
   try {
-    const res = await fetch("http://localhost:3000/api/information", {
+    const res = await fetch("https://agritechv2-0.onrender.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
