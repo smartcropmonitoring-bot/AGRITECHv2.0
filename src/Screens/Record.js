@@ -39,5 +39,5 @@ async function searchRecords() {
 
 // Redirect to read-only profile page
 function viewProfile(id) {
-  window.location.href = `profile.html?id=${id}`;
+  window.location.href = `Profile.html?id=${id}`;
 }
