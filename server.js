@@ -9,18 +9,34 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename)
+const __dirname = path.dirname(__filename);
 
 // 🔹 Load .env explicitly
 dotenv.config(); // loads .env
 console.log("Mongo URI:", process.env.MONGODB_URI);
 
-// Debug: confirm Mongo URI is loaded
-console.log("Mongo URI:", process.env.MONGODB_URI);
-
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(express.json()); // ✅ only JSON parser (no duplicate cors)
+
+// ✅ CORS setup (allow only frontend + local dev)
+const allowedOrigins = [
+  "https://agritechv2-0.onrender.com", // your frontend
+  "http://localhost:3000"              // for local testing
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    console.log("🔎 CORS request from:", origin); // debug log
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 
 // 🔹 Connect to MongoDB
 if (!process.env.MONGODB_URI) {
@@ -174,6 +190,3 @@ app.get("/", (req, res) => {
 /* ------------------ START SERVER ------------------ */
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-
-
-
