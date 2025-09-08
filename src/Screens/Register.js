@@ -37,7 +37,7 @@ document.getElementById("registerBtn").addEventListener("click", async function 
     const data = await res.json();
     if (data.success) {
       alert("Account successfully created!");
-      window.location.href = "loginPage.html";
+      window.location.href = "LoginPage.html";
     } else {
       error.textContent = data.message;
     }
