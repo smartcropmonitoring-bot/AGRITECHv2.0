@@ -18,11 +18,11 @@
     <h2>1. Select Animal Type</h2>
     <select id="animalType" name="animalType" onchange="goToAnimalForm(this.value)">
       <option value="">-- Select --</option>
-      <option value="Cattle">Cattle</option>
-      <option value="Chicken">Chicken</option>
-      <option value="Duck">Duck</option>
-      <option value="Goat">Goat</option>
-      <option value="Pig">Pig</option>
+      <option value="cattle">Cattle</option>
+      <option value="chicken">Chicken</option>
+      <option value="duck">Duck</option>
+      <option value="goat">Goat</option>
+      <option value="pig">Pig</option>
     </select>
 
     <div id="animalFields"></div>
@@ -35,7 +35,7 @@
     // ✅ Redirect based on selected animal
     function goToAnimalForm(animal) {
       if (!animal) return;
-      const fileName = animal + ".html"; // e.g. Chicken.html
+      const fileName = animal.toLowerCase() + ".html"; // e.g. chicken.html
       // Forms are inside src/screens/forms/
       window.location.href = "src/screens/forms/" + fileName;
     }
