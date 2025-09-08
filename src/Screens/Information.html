@@ -2,22 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Farmer Information Form</title>
+  <title>Farmer Census Form</title>
 </head>
 <body>
-  <h2>Farmer Information</h2>
+  <h2>Farmer Census</h2>
 
-  <form id="infoForm">
+  <form id="farmerForm">
     <!-- 👤 Farmer Details -->
     <label>Full Name: <input type="text" name="fullName" required></label><br>
     <label>Contact: <input type="text" name="contact"></label><br>
 
+    <!-- 📍 Location -->
     <h3>📍 Location</h3>
     <label>Province: <input type="text" name="province"></label><br>
     <label>Municipality: <input type="text" name="municipality"></label><br>
     <label>Barangay: <input type="text" name="barangay"></label><br>
 
-    <h3>🌾 Farming</h3>
+    <!-- 🌾 Farming Basics -->
+    <h3>🌱 Farming</h3>
     <label>Total Land Area (ha): <input type="number" name="totalLandArea"></label><br>
     <label>Ownership Status:
       <select name="ownershipStatus">
@@ -28,102 +30,11 @@
         <option>Government/Coop</option>
       </select>
     </label><br>
-    <label>Land Type: <input type="text" name="landType"></label><br>
     <label>Main Crop: <input type="text" name="mainCrop"></label><br>
-    <label>Secondary Crops: <input type="text" name="secondaryCrops"></label><br>
-    <label>Planting Season: <input type="text" name="plantingSeason"></label><br>
-    <label>Average Yield: <input type="number" name="avgYield"></label><br>
-    <label>Harvest Frequency: <input type="text" name="harvestFrequency"></label><br>
-    <label>Usage: <input type="text" name="usage"></label><br>
-
-    <h4>Practices</h4>
-    <label>Method: <input type="text" name="method"></label><br>
-    <label>Irrigation Source: <input type="text" name="irrigationSource"></label><br>
-    <label>Fertilizer Use: <input type="text" name="fertilizerUse"></label><br>
-    <label>Pesticide Use:
-      <select name="pesticideUse">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
-    </label><br>
-    <label>Equipment: <input type="text" name="equipment"></label><br>
-    <label>Storage Facility: <input type="text" name="storageFacility"></label><br>
-
-    <h4>Farming Expenses</h4>
-    <label>Seeds: <input type="number" name="expSeeds"></label><br>
-    <label>Fertilizers: <input type="number" name="expFertilizers"></label><br>
-    <label>Pesticides: <input type="number" name="expPesticides"></label><br>
-    <label>Labor: <input type="number" name="expLabor"></label><br>
-    <label>Water: <input type="number" name="expWater"></label><br>
-    <label>Fuel: <input type="number" name="expFuel"></label><br>
-    <label>Others: <input type="number" name="expOthers"></label><br>
-
-    <h3>🐮 Cattle</h3>
-    <label>Number of Heads: <input type="number" name="cattleHeads"></label><br>
-    <label>Breed: <input type="text" name="cattleBreed"></label><br>
-    <label>Purpose: <input type="text" name="cattlePurpose"></label><br>
-    <label>Avg Milk Production: <input type="number" name="cattleMilk"></label><br>
-    <label>Age Distribution: <input type="text" name="cattleAgeDist"></label><br>
-    <label>Expenses (Feed): <input type="number" name="cattleFeed"></label><br>
-    <label>Expenses (Veterinary): <input type="number" name="cattleVet"></label><br>
-    <label>Expenses (Housing): <input type="number" name="cattleHousing"></label><br>
-    <label>Expenses (Labor): <input type="number" name="cattleLabor"></label><br>
-    <label>Expenses (Others): <input type="number" name="cattleOthers"></label><br>
-    <label>Challenges: <input type="text" name="cattleChallenges"></label><br>
-
-    <h3>🐐 Goat</h3>
-    <label>Number of Heads: <input type="number" name="goatHeads"></label><br>
-    <label>Breed: <input type="text" name="goatBreed"></label><br>
-    <label>Purpose: <input type="text" name="goatPurpose"></label><br>
-    <label>Avg Milk Production: <input type="number" name="goatMilk"></label><br>
-    <label>Breeding Method: <input type="text" name="goatBreeding"></label><br>
-    <label>Expenses (Feed): <input type="number" name="goatFeed"></label><br>
-    <label>Expenses (Veterinary): <input type="number" name="goatVet"></label><br>
-    <label>Expenses (Housing): <input type="number" name="goatHousing"></label><br>
-    <label>Expenses (Labor): <input type="number" name="goatLabor"></label><br>
-    <label>Expenses (Others): <input type="number" name="goatOthers"></label><br>
-    <label>Challenges: <input type="text" name="goatChallenges"></label><br>
-
-    <h3>🐖 Pig</h3>
-    <label>Number of Pigs: <input type="number" name="pigCount"></label><br>
-    <label>Type: <input type="text" name="pigType"></label><br>
-    <label>Avg Litter Size: <input type="number" name="pigLitter"></label><br>
-    <label>Growth Cycle (Months): <input type="number" name="pigGrowth"></label><br>
-    <label>Expenses (Feed): <input type="number" name="pigFeed"></label><br>
-    <label>Expenses (Medicines): <input type="number" name="pigMeds"></label><br>
-    <label>Expenses (Housing): <input type="number" name="pigHousing"></label><br>
-    <label>Expenses (Labor): <input type="number" name="pigLabor"></label><br>
-    <label>Expenses (Others): <input type="number" name="pigOthers"></label><br>
-    <label>Challenges: <input type="text" name="pigChallenges"></label><br>
-
-    <h3>🐔 Chicken</h3>
-    <label>Number of Birds: <input type="number" name="chickenCount"></label><br>
-    <label>Type: <input type="text" name="chickenType"></label><br>
-    <label>Avg Egg Production: <input type="number" name="chickenEggs"></label><br>
-    <label>Growth Cycle (Weeks): <input type="number" name="chickenGrowth"></label><br>
-    <label>Housing: <input type="text" name="chickenHousing"></label><br>
-    <label>Expenses (Feed): <input type="number" name="chickenFeed"></label><br>
-    <label>Expenses (Vaccines): <input type="number" name="chickenVac"></label><br>
-    <label>Expenses (Housing): <input type="number" name="chickenHouseExp"></label><br>
-    <label>Expenses (Labor): <input type="number" name="chickenLabor"></label><br>
-    <label>Expenses (Others): <input type="number" name="chickenOthers"></label><br>
-    <label>Challenges: <input type="text" name="chickenChallenges"></label><br>
-
-    <h3>🦆 Duck</h3>
-    <label>Number of Birds: <input type="number" name="duckCount"></label><br>
-    <label>Purpose: <input type="text" name="duckPurpose"></label><br>
-    <label>Avg Egg Production: <input type="number" name="duckEggs"></label><br>
-    <label>Housing: <input type="text" name="duckHousing"></label><br>
-    <label>Expenses (Feed): <input type="number" name="duckFeed"></label><br>
-    <label>Expenses (Veterinary): <input type="number" name="duckVet"></label><br>
-    <label>Expenses (Housing): <input type="number" name="duckHouseExp"></label><br>
-    <label>Expenses (Labor): <input type="number" name="duckLabor"></label><br>
-    <label>Expenses (Others): <input type="number" name="duckOthers"></label><br>
-    <label>Challenges: <input type="text" name="duckChallenges"></label><br>
 
     <button type="submit">💾 Save Farmer</button>
   </form>
 
-  <script src="infoForm.js"></script>
+  <script src="farmerForm.js"></script>
 </body>
 </html>
